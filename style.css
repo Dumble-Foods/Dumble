@@ -1,0 +1,838 @@
+/* Reset + Global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Added a general transition for a smoother feel */
+  transition: all 0.2s ease-out; 
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #fcfcfc, #f4f4f4); 
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  /* REQ 1/4 FIX: Pushes content down to clear the fixed header */
+   
+  /* Increased padding to prevent fixed footer from overlapping legal footer text */
+  padding-bottom: 120px; 
+}
+
+/* --------------------------------- */
+/* 🔴 TOP HEADER & SIDEBAR MENU (REQ 1 & 4 FIX: Fixed Positioning Confirmed) */
+/* --------------------------------- */
+
+.top-header {
+  width: 100%;
+  max-width: 650px; 
+  /* Restoring the premium gradient design */
+  background: linear-gradient(135deg, #e03c3c, #c5303c); 
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  /* Restoring strong shadow */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  margin: 0 auto; 
+  border-bottom-left-radius: 15px; 
+  border-bottom-right-radius: 15px;
+  /* Restoring the yellow accent border at the bottom */
+  border-bottom: 4px solid #ffc107; 
+  
+  
+}
+
+.menu-icon {
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  padding-right: 10px;
+  font-weight: 700;
+  user-select: none; 
+}
+
+.header-logo img {
+  height: 35px; 
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+/* Sidebar Styling - Starts hidden, slides in */
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: #e03c3c; 
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.side-menu.open { width: 250px; }
+
+.side-menu a {
+  padding: 15px 25px 15px 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: white;
+  display: flex; 
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+}
+
+.side-menu a:hover {
+  background-color: #ffc107; 
+  color: #333;
+}
+
+.side-menu .close-btn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-header {
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffc107;
+}
+.menu-logo {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+.menu-header h3 {
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* Menu Overlay */
+.menu-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1500;
+    display: none;
+    transition: opacity 0.5s;
+}
+.menu-overlay.active {
+    display: block;
+}
+
+/* --------------------------------- */
+/* 💬 TAGLINE & MENU HEADER */
+/* --------------------------------- */
+
+.below-slider-tag {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: #000;              /* pure black */
+  text-align: center;
+  margin: 20px 0 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+/* Small decorative line below text */
+.below-slider-tag::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ffc107;    /* 🟡 yellow accent */
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.menu-section {
+  width: 100%;
+  max-width: 650px;
+  padding: 5px 0 25px 0;   /* 🔽 reduced top gap */
+}
+
+/* EXPLORE OUR MENU – polished version */
+.menu-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;          /* 👈 smaller, not bulky */
+  font-weight: 600;           /* 👈 premium bold */
+  color: #e03c3c;             /* Dumble red */
+  text-align: left;           /* 👈 LEFT aligned */
+  margin: 8px 0 16px 15px;    /* 👈 left push + spacing */
+  letter-spacing: 0.5px;      /* classy spacing */
+  line-height: 1.2;           /* taller look */
+}
+.menu-section h2::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  background: #e03c3c;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* subtle yellow accent under heading */
+
+
+/* --------------------------------- */
+/* 🧾 ABOUT US (Yellow Border) */
+/* --------------------------------- */
+
+.about-us {
+  display: flex;
+  justify-content: center;
+  margin: 25px auto 30px; 
+  padding: 0 15px;
+}
+.about-box {
+  background-color: #fff; 
+  /* Distinct yellow border */
+  border: 3px solid #ffc107; 
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  padding: 18px 22px;
+  max-width: 650px;
+  font-size: 1rem;
+  line-height: 1.7; 
+  text-align: center;
+  font-weight: 500; 
+}
+.about-box span {
+  color: #e03c3c;
+  font-weight: 700;
+}
+.about-logo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --------------------------------- */
+/* 🔴 SLIDER & MENU GRID */
+/* --------------------------------- */
+
+.slider {
+  width: 100%;
+  max-width: 650px; 
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  margin-top: 20px;
+}
+.slider-track {
+  display: flex;
+  animation: slide 12s infinite; 
+}
+.slide {
+  flex: 0 0 100%;
+}
+.slide img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+@keyframes slide {
+  0%   { transform: translateX(0%); }
+  25%  { transform: translateX(0%); }   
+  33%  { transform: translateX(-100%); } 
+  58%  { transform: translateX(-100%); } 
+  66%  { transform: translateX(-200%); } 
+  91%  { transform: translateX(-200%); } 
+  100% { transform: translateX(0%); }    
+}
+
+/* Horizontal Scrolling Menu Grid */
+.menu-grid {
+  display: flex; 
+  overflow-x: scroll; 
+  scroll-snap-type: x mandatory; 
+  -webkit-overflow-scrolling: touch; 
+  padding: 0 20px 10px 20px; 
+  gap: 20px; 
+}
+.menu-grid::-webkit-scrollbar { display: none; }
+
+/* Card Styles */
+.menu-card {
+  flex-shrink: 0;
+  width: 135px;                 /* slightly smaller */
+  height: 255px;                /* reduced height */
+  background: #ffffff;
+  border-radius: 14px;
+
+  /* ✅ YELLOW BORDER (same as About Us) */
+  border: 2.5px solid #ffc107;
+
+  /* ✅ Clean premium shadow */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+
+  padding: 12px;
+  text-align: center;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  perspective: 1000px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.menu-card:hover {
+  transform: translateY(-4px)
+  scale(1.02);
+  box-shadow: 0 10px 22px rgba(255,193,7,0.5);
+  border-color: #e03c3c;
+}
+.menu-card img {
+  width: 100%;
+  height: 80px;              /* 🔹 tighter */
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;    /* subtle polish */
+}
+.menu-card h3 {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.menu-card p {
+  font-size: 1rem;
+  color: #e03c3c;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.menu-card button {
+  padding: 8px 16px; 
+  background: #e03c3c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.menu-card button:hover { background: #903030; }
+
+/* Flip Card Mechanics (Unchanged) */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-front { padding-bottom: 0; }
+.card-back {
+  transform: rotateY(180deg);
+  justify-content: center;
+  align-items: center;
+}
+.card-back h4 {
+  color: #e03c3c;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.card-back ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+}
+.card-back li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+.card-back li::before {
+  content: "🥟 "; 
+  color: #e03c3c;
+  font-weight: bold;
+}
+.menu-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* --------------------------------- */
+/* 📍 LOCATION AND HOURS */
+/* --------------------------------- */
+.location-hours {
+    text-align: center;
+    /* Adopting the old discount section's padding */
+    padding: 40px 20px;
+    /* Adopting the old discount section's background */
+    background: #ffecec; 
+    /* Adopting the old discount section's red borders */
+    border-top: 5px solid #e03c3c;
+    border-bottom: 5px solid #e03c3c;
+    width: 100%;
+    margin-top: 30px;
+}
+.location-hours h2 {
+    font-size: 1.8rem;
+    color: #e03c3c; 
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+.info-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    text-align: left;
+    max-width: 650px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+.info-box p {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #4a5568;
+}
+.info-box strong {
+    color: #e03c3c;
+}
+.map-container {
+    max-width: 650px; 
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.map-container iframe {
+    width: 100%;
+    height: 250px; 
+    border: 0;
+    display: block;
+}
+
+
+/* --------------------------------- */
+/* 📞 FIXED CTA FOOTER (Unchanged, remains fixed) */
+/* --------------------------------- */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background: #ffffff; 
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); 
+  padding: 8px 10px; 
+  z-index: 1000;
+}
+footer button {
+  width: 95%; 
+  padding: 8px 10px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #ffc107; /* Momo Gold */
+  color: #333;
+  font-weight: 700;
+  transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(255, 193, 7, 0.5);
+  display: flex;
+  flex-direction: column; 
+  line-height: 1.2;
+}
+
+footer button:hover { background: #e6b300; }
+
+.cta-hook {
+    font-size: 1.1rem;
+    color: #e03c3c; 
+    font-weight: 600;
+}
+
+.cta-action {
+    font-size: 1.4rem;
+    font-weight: 800; 
+    text-transform: uppercase;
+    color: #333;
+}
+
+/* Custom Modal Styles */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 5px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+.modal-close:hover,
+.modal-close:focus {
+    color: #e03c3c;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* --------------------------------- */
+/* 📜 NEW LEGAL FOOTER (Fixed Design) */
+/* --------------------------------- */
+.legal-footer {
+    width: 100%;
+    /* Matching the main Dumble Red color */
+    background-color: #e03c3c; 
+    padding: 20px 10px;
+    /* REQ 5: Removed margin-top to adjust the gap */
+    margin-top: 0; 
+    text-align: center;
+}
+.legal-footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 0 10px;
+    padding: 5px 0;
+    transition: color 0.2s;
+    /* Allows links to stack nicely on small screens */
+    display: inline-block; 
+}
+.legal-footer a:hover {
+    color: #ffc107; /* Momo Gold hover */
+    text-decoration: underline;
+}
+.legal-footer p {
+    color: #f9f9f9;
+    font-size: 0.8rem;
+    margin-top: 5px; /* Added spacing after links */
+    margin-bottom: 0; /* Ensures clean footer bottom */
+}
+
+
+/* --------------------------------- */
+/* 📝 FEEDBACK PAGE SPECIFIC STYLES */
+/* --------------------------------- */
+
+.feedback-page-body {
+    /* Ensures page takes full width and background gradient is applied */
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #fff3e6, #ffe0d2);
+    
+    padding-bottom: 20px !important;
+
+}
+.feedback-container {
+    max-width: 500px;
+    /* REQ 3 FIX: Significantly reduced top margin and bottom padding */
+    margin: 5px auto 0; 
+    padding: 0 16px 10px; 
+}
+
+.feedback-container h1 { 
+    text-align: center;
+    color: #e03c3c;
+    /* Removed large margins to pull the form up */
+    margin: 5px 0 10px 0; 
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+
+/* REQ 3: Form Styles - Added Red Border and Enhanced Look */
+.feedback-container form {
+    background: #fff;
+    /* Reduced internal padding from 14px/20px to 12px */
+    padding: 12px;
+    border-radius: 12px;
+    border: 3px solid #e03c3c;
+    box-shadow: 0 4px 20px rgba(224, 60, 60, 0.3);
+    /* Reduced margin-bottom so it doesn't push against the footer too hard */
+    margin-bottom: 20px; 
+}
+
+/* Fix the height of the message box so it doesn't grow too large */
+.feedback-container textarea {
+    height: 80px !important; /* Forces a smaller box to keep button visible */
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 0.95rem;
+    resize: none; /* Prevents user from stretching it manually */
+}
+
+.feedback-container label {
+    display: block;
+    margin-top: 6px; /* Reduced from 10px */
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.feedback-container input[type="email"], 
+.feedback-container textarea, 
+.feedback-container select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-top: 5px; /* REQ 3 FIX: Reduced margin-top from 8px to 5px */
+    font-size: 0.95rem;
+}
+.feedback-container .submit-btn {
+    width: 100%;
+    /* REQ 3 FIX: Reduced margin-top from 25px to 20px */
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #e03c3c;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.feedback-container .submit-btn:hover {
+  padding: 10px;
+  margin-top: 14px;
+    background-color: #c42d2d;
+}
+.feedback-container .note {
+    /* REQ 3 FIX: Reduced margin-top from 15px to 10px */
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+}
+.feedback-container .discount-msg {
+    color: #007bff;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+/* Back Arrow Wrapper */
+.back-link-wrapper {
+    width: 100%;
+    max-width: 500px;
+    /* The 70px body padding handles the gap below the fixed header. */
+    margin: 0 auto 0; 
+    padding: 10px 20px; 
+}
+/* REQ 2 FIX: Styling for the back arrow button to ensure visibility */
+.back-arrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #e03c3c; /* Ensure bright red color for visibility */
+    font-weight: 600;
+    font-size: 1.4rem; 
+    padding: 0; 
+    border: none; 
+    border-radius: 0; 
+    width: auto; 
+    height: auto; 
+    transition: color 0.2s, transform 0.2s;
+}
+.back-arrow:hover {
+    background-color: transparent; 
+    color: #c42d2d;
+    transform: scale(1.1);
+}
+.back-arrow i.fa-arrow-left { 
+    font-size: 1.5rem; 
+}
+
+
+/* Thank You Box Design (REQ 3 FIX: Increased margin-top for header clearance) */
+.thank-you {
+    display: none;
+    text-align: center;
+    padding: 22px 18px;
+    border-radius: 12px;
+    max-width: 500px;
+
+    /* ✅ KEY FIX */
+    margin: 20px auto 40px;   /* top | left-right | bottom */
+
+    background: linear-gradient(145deg, #fff, #ffe8e8);
+    border: 3px solid #e03c3c;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: bounceIn 0.8s ease-out;
+}
+.thank-you h2 {
+  margin-bottom: 8px;
+    color: #c42d2d;
+    font-size: 2rem;
+    font-family: 'Georgia', serif;
+}
+.thank-you-icon { /* New icon style */
+    font-size: 4rem;
+    color: #ffc107;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+    display: block;
+}
+.signature-note { /* Style */
+    margin-top: 30px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    text-align: center;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+}
+.signature-note p:first-child {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0;
+}
+.signature-note p:last-child {
+    font-weight: 800;
+    color: #e03c3c;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+.back-btn {
+    /* Ensuring this button remains prominent and consistent */
+    margin-top: 25px !important; 
+    padding: 12px 25px !important;
+    font-size: 1.1rem !important;
+    background: #e03c3c !important;
+    color: white !important;
+    border-radius: 8px !important;
+}
+
+/* Animations for Thank You Box */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+/* Home icon beside feedback title */
+.feedback-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.home-icon {
+  font-size: 1.6rem;
+  color: #e03c3c;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.home-icon:hover {
+  transform: scale(1.15);
+  color: #c42d2d;
+}
+/* Hide home icon only on thank you screen */
+
+.thank-you + .back-link-wrapper {
+    display: none !important;
+}
+#phone {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensures padding doesn't break width */
+  transition: border-color 0.3s ease;
+}
+
+#phone:focus {
+  border-color: #e03c3c;
+  outline: none;
+  background-color: #fffafa;
+}
+/* Red Home Button for Thank You screen */
+.home-btn-red {
+  background-color: #e03c3c !important; /* Matches Dumble Red */
+  color: white !important;
+  margin-top: 15px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.home-btn-red:hover {
+  background-color: #c42d2d !important;
+}

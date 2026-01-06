@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback - Dumble</title>
+
+  <link rel="stylesheet" href="style.css"> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Georgia&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* Full-screen fit logic */
+    .feedback-container { padding: 10px 20px !important; }
+    #message { height: 80px; margin-bottom: 5px; resize: none; }
+    
+    .error-hint {
+      color: #e03c3c;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+      margin-top: 4px;
+    }
+
+    /* Result Card */
+    .thank-you-card {
+      display: none;
+      text-align: center;
+      padding: 25px 20px;
+      border-radius: 15px;
+      background: #fff;
+      border: 3px solid #e03c3c;
+      box-shadow: 0 10px 30px rgba(224, 60, 60, 0.2);
+    }
+    .thank-you-card i { font-size: 3rem; margin-bottom: 15px; }
+    
+    .coupon-design {
+      margin: 20px 0;
+      border: 2px dashed #e03c3c;
+      padding: 15px 10px;
+      background: #fffafa;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #discountCode {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #e03c3c;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .signature-line {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px dashed #ddd;
+    }
+    .signature-line h4 { color: #e03c3c; font-size: 1.3rem; margin-top: 5px; }
+    
+    .note {
+      text-align: center;
+      font-size: 0.85rem;
+      margin: 10px 0;
+      color: #555;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body class="feedback-page-body">
+
+<header class="top-header">
+  <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+  <div class="header-logo">
+    <img src="images/dumble.jpeg" alt="Dumble Logo">
+  </div>
+</header>
+
+<div class="feedback-container">
+  <div class="feedback-title-row" id="titleRow">
+    <h1>Your Feedback</h1>
+  </div>
+
+  <form id="feedbackForm">
+    <label for="rating">Rate Us:</label>
+    <select id="rating" name="rating" required>
+      <option value="">Select rating</option>
+      <option value="1">⭐ Very Poor</option>
+      <option value="2">⭐⭐ Poor</option>
+      <option value="3">⭐⭐⭐ Average</option>
+      <option value="4">⭐⭐⭐⭐ Good</option>
+      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+    </select>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" maxlength="10" required>
+    <p id="phoneError" class="error-hint">Invalid Number: Please check and try again.</p>
+
+    <label for="message">Your Feedback:</label>
+    <textarea id="message" name="message" placeholder="What can we do better?" required></textarea>
+
+    <p class="note">
+      ✨ Your reward will be revealed after submission.
+    </p>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
+  </form>
+
+  <div id="thankYouBox" class="thank-you-card" style="display: none; padding-bottom: 30px !important;">
+    <div id="statusIcon">
+    </div>
+    <h2 id="thankTitle" style="font-family: 'Georgia', serif;">You’re the Best! ✨</h2>
+    <p id="thankMessage" style="margin: 10px 0; font-size: 0.95rem; line-height: 1.4;">
+        Thanks for being a fan of Dumble Foods! We’ve unlocked a special treat for you. Use the code below to save on your next order.
+    </p>
+    
+    <div id="codeBox" class="coupon-design" style="display: flex;">
+        <span id="discountCode">DF-CODE</span>
+    </div>
+
+    <div class="signature-line">
+        <p style="font-style: italic; color: #777; margin:0;">With love,</p>
+        <h4 style="color: #e03c3c; font-size: 1.3rem; margin-top: 5px;">Dumble</h4>
+    </div>
+
+    <button onclick="location.href='index.html'" class="submit-btn" style="margin-top: 25px; background-color: #e03c3c !important; width: 160px; height: 48px; margin-inline: auto; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; border: none; padding: 0; cursor: pointer;">
+        <i class="fas fa-home" style="font-size: 1.1rem; line-height: 1; display: inline-flex; align-items: center; margin-bottom: 2px;"></i>
+        <span style="font-size: 1rem; font-weight: 600; line-height: 1; color: white;">Go Home</span>
+    </button>
+</div>
+  </div>
+</div>
+
+<script>
+function toggleMenu() {
+    // Note: Ensure side-menu and menu-overlay IDs exist in your layout if you use this
+    const menu = document.getElementById('side-menu');
+    const overlay = document.getElementById('menu-overlay');
+    if(menu) menu.classList.toggle('open');
+    if(overlay) overlay.classList.toggle('active');
+}
+
+const phoneInput = document.getElementById('phone');
+const phoneError = document.getElementById('phoneError');
+const submitBtn = document.getElementById('submitBtn');
+const form = document.getElementById('feedbackForm');
+
+phoneInput.addEventListener('input', () => {
+    phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+    phoneError.style.display = 'none';
+});
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const val = phoneInput.value;
+    // Basic fake check
+    const isFake = /^(.)\1+$/.test(val) || val === "1234567890" || val.length !== 10;
+    
+    if (isFake) {
+        phoneError.style.display = 'block';
+        return;
+    }
+
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
+
+    try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbwtNhXfAVrItkXjuB5ig8ly9DfdP-S3co8eMNJHbUeT9Dv_KXO7viTZ6TvPw_6qHqLa/exec", { method: "POST", body: new FormData(form) });
+        const data = await res.json();
+        
+        form.style.display = "none";
+        document.getElementById('titleRow').style.display = "none";
+        document.getElementById("thankYouBox").style.display = "block";
+
+        if (data.status === "SUCCESS") {
+            document.getElementById("thankTitle").textContent = "You’re the Best! ✨";
+            document.getElementById("thankMessage").textContent = "Thanks for being a fan of Dumble Foods! We’ve unlocked a special treat for you. Use the code below to save on your next order.";
+            document.getElementById("discountCode").textContent = data.code;
+            document.getElementById("codeBox").style.display = "flex";
+        } else if (data.status === "ALREADY_CLAIMED") {
+            document.getElementById("statusIcon").innerHTML = '<i class="fas fa-clock" style="color: #ffc107;"></i>';
+            document.getElementById("thankTitle").textContent = "Already Claimed";
+            document.getElementById("thankMessage").textContent = "You have already taken a code recently. To be fair to everyone, we give out one code per customer every week. See you again soon!";
+            document.getElementById("codeBox").style.display = "none";
+        } else {
+            // This handles any other server error or "Invalid" response from your Google Script
+            document.getElementById("statusIcon").innerHTML = '<i class="fas fa-exclamation-circle" style="color: #e03c3c;"></i>';
+            document.getElementById("thankTitle").textContent = "Invalid Number";
+            document.getElementById("thankMessage").textContent = "This phone number does not look right. Please check the number and try again to get your discount.";
+            document.getElementById("codeBox").style.display = "none";
+        }
+    } catch (err) {
+        alert("Connection error. Try again.");
+        submitBtn.innerText = "Submit Feedback";
+        submitBtn.disabled = false;
+    }
+});
+</script>
+</body>
+</html>
