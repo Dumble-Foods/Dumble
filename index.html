@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dumble Momo Stall</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts: Poppins (for main text) and Georgia (for attractive headings) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Georgia&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Hamburger and Menu Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- 🔴 OFF-CANVAS SIDEBAR MENU -->
+  <div id="side-menu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    <div class="menu-header">
+      <img src="images/dumble.jpeg" alt="Dumble Logo" class="menu-logo">
+      <h3>Dumble Foods</h3>
+    </div>
+    <a href="index.html" onclick="location.href='index.html'; toggleMenu()">
+        <i class="fas fa-home"></i> Home
+    </a>
+    <a href="#" onclick="toggleMenu(); showCustomMessage('Order functionality is currently under development!')">
+        <i class="fas fa-shopping-cart"></i> Order Now
+    </a>
+    <a href="feedback.html" onclick="location.href='feedback.html'; toggleMenu()">
+        <i class="fas fa-star"></i> Feedback
+    </a>
+    <a href="tel:+919999999999" onclick="toggleMenu()">
+        <i class="fas fa-phone"></i> Contact Us
+    </a>
+    <!-- Link to the About Us section on this page -->
+    <a href="#about-us-section" onclick="scrollToSection('about-us-section'); toggleMenu()">
+        <i class="fas fa-info-circle"></i> About Us
+    </a>
+  </div>
+
+  <!-- 🔴 MENU OVERLAY (Click anywhere to close menu) -->
+  <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
+
+  <!-- 🔴 TOP HEADER (FIXED: This header now remains visible on scroll) -->
+  <header class="top-header">
+    <span id="menu-toggle" class="menu-icon" onclick="toggleMenu()">
+        &#9776;
+    </span>
+    <div class="header-logo">
+      <img src="images/dumble.jpeg" alt="Dumble Logo"> 
+    </div>
+  </header>
+
+  <!-- 🔴 Combo Slider (Animated image reel with improved borders) -->
+  <section class="slider">
+    <div class="slider-track">
+      <div class="slide"><img src="images/combo1.jpg" alt="Combo 1"></div>
+      <div class="slide"><img src="images/combo2.jpg" alt="Combo 2"></div>
+      <div class="slide"><img class="no-border" src="images/combo3.jpg" alt="Combo 3"></div>
+    </div>
+  </section>
+
+  <!-- 💬 Tagline -->
+  <p class="below-slider-tag">Steamed With Love</p>
+
+  <!-- 🍽 Menu Section -->
+  <section class="menu-section">
+    <h2>Explore Our Menu</h2> 
+    
+    <!-- Menu Grid: Horizontal scrollable for mobile -->
+    <div class="menu-grid">
+      
+      <!-- Card 1: Veg Momos (Flippable Card) -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/veg.jpg" alt="Veg Momos">
+            <h3>Veg Momos</h3>
+            <p>₹60</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Cabbage, Carrot, Onion</li>
+              <li>Steamed to perfection</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2: Paneer Momos -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/paneer.jpg" alt="Paneer Momos">
+            <h3>Paneer Momos</h3>
+            <p>₹70</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Soft Paneer, Onion, Herbs</li>
+              <li>A creamy, delicious bite</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3: Chicken Momos -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/chicken.jpg" alt="Chicken Momos">
+            <h3>Chicken Momos</h3>
+            <p>₹80</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Minced Chicken, Spices</li>
+              <li>Juicy and flavorful</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card 4: Veg Fried Momos -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/fried_veg.jpg" alt="Veg Fried Momos">
+            <h3>Veg Fried Momos</h3>
+            <p>₹70</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Our classic Veg Momos</li>
+              <li>Crispy fried finish</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card 5: Paneer Fried Momos -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/fried_paneer.jpg" alt="Paneer Fried Momos">
+            <h3>Paneer Fried Momos</h3>
+            <p>₹80</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Our delicious Paneer Momos</li>
+              <li>Golden fried texture</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Card 6: Chicken Fried Momos -->
+      <div class="menu-card" onclick="this.classList.toggle('flipped')">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="images/fried_chicken.jpg" alt="Chicken Fried Momos">
+            <h3>Chicken Fried Momos</h3>
+            <p>₹90</p>
+            <button>Know More</button>
+          </div>
+          <div class="card-back">
+            <h4>Ingredients:</h4>
+            <ul>
+              <li>Our flavorful Chicken Momos</li>
+              <li>Deep fried and crispy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 🧾 About Us -->
+  <section class="about-us" id="about-us-section">
+    <div class="about-box">
+      <img src="images/dumble.jpeg" alt="Logo" class="about-logo">
+      <p><span>Dumble</span> serves freshly steamed momos every day with hygiene, heart, and spice. Whether you crave veg, chicken, or paneer — we have it all.</p>
+    </div>
+  </section>
+  
+
+  <!-- 📍 Location and Hours -->
+  <section class="location-hours">
+    <h2>Find Us & Hours</h2>
+    <div class="info-box">
+        <p><strong>📍 Location:</strong> Gali No. 6, Govindpuri, Kalkaji, New Delhi (Opposite Datta Electrics)</p>
+        <p><strong>⏰ Hours:</strong> Mon - Sun: 4:00 PM - 10:30 PM</p>
+    </div>
+    <!-- Embedded Map for Location -->
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.743209849503!2d77.25841097534571!3d28.577264886675545!2m3!1f0!2f0!0f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3cc22071f6d%3A0x279f323c6f66299b!2sGovindpuri%20Extension%2C%20Govindpuri%2C%20Kalkaji%2C%20New%20Delhi%2C%20Delhi%20110019!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Google Map location of Dumble Momo Stall in Govindpuri Kalkaji">
+        </iframe>
+    </div>
+  </section>
+
+  <!-- 📞 FIXED FOOTER -->
+  <footer>
+    <button onclick="location.href='feedback.html'" class="feedback-cta-main">
+        <span class="cta-hook">⭐ Grab Your Discount!</span> 
+        <span class="cta-action">Feedback Us</span>
+    </button>
+  </footer>
+
+  <!-- Custom Message Modal (Replaces alert()) -->
+  <div id="custom-message-modal" class="custom-modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeCustomMessage()">&times;</span>
+      <p id="modal-text"></p>
+    </div>
+  </div>
+  
+  <!-- 📜 NEW LEGAL FOOTER -->
+  <div class="legal-footer">
+    <p>
+      <a href="#" onclick="showCustomMessage('Privacy Policy content goes here.')">Privacy Policy</a>
+      |
+      <a href="#" onclick="showCustomMessage('Terms of Service content goes here.')">Terms of Service</a>
+      |
+      <a href="#" onclick="showCustomMessage('Disclaimer content goes here.')">Disclaimer</a>
+    </p>
+    <p>&copy; 2024 Dumble Foods. All rights reserved. Committed to Quality.</p>
+  </div>
+  
+  <script>
+   
+
+;
+    // Toggles the visibility of the red sidebar menu and the overlay
+    function toggleMenu() {
+        const menu = document.getElementById('side-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const isMenuOpen = menu.classList.toggle('open');
+        overlay.classList.toggle('active', isMenuOpen);
+    }
+
+    // Smooth scrolls to any section ID and closes the menu
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Custom Modal/Message Box Logic (Replaces forbidden alert())
+    function showCustomMessage(message) {
+        const modal = document.getElementById('custom-message-modal');
+        const modalText = document.getElementById('modal-text');
+        modalText.textContent = message;
+        modal.style.display = 'flex'; // Use flex to center the content
+    }
+
+    function closeCustomMessage() {
+        document.getElementById('custom-message-modal').style.display = 'none';
+    }
+    
+    // Close modal if user clicks outside of content
+    window.onclick = function(event) {
+      const modal = document.getElementById('custom-message-modal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
