@@ -6,199 +6,267 @@
   <title>Feedback - Dumble</title>
 
   <link rel="stylesheet" href="style.css"> 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Georgia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Georgia&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
-    /* Full-screen fit logic */
     .feedback-container { padding: 10px 20px !important; }
     #message { height: 80px; margin-bottom: 5px; resize: none; }
+    .error-hint { color: #e03c3c; font-size: 0.85rem; font-weight: 600; display: none; margin-top: 4px; }
     
-    .error-hint {
-      color: #e03c3c;
-      font-size: 0.85rem;
-      font-weight: 600;
-      display: none;
-      margin-top: 4px;
-    }
-
-    /* Result Card */
-    .thank-you-card {
-      display: none;
-      text-align: center;
-      padding: 25px 20px;
-      border-radius: 15px;
-      background: #fff;
-      border: 3px solid #e03c3c;
-      box-shadow: 0 10px 30px rgba(224, 60, 60, 0.2);
-    }
-    .thank-you-card i { font-size: 3rem; margin-bottom: 15px; }
+    .thank-you-card { padding: 15px 15px !important; margin: 10px auto !important; }
+    #thankTitle { font-size: 1.3rem !important; margin-bottom: 5px !important; color: #e03c3c; font-family: 'Georgia', serif; }
+    #thankMessage { font-size: 0.85rem !important; margin-bottom: 10px !important; line-height: 1.3 !important; color: #444; }
     
-    .coupon-design {
-      margin: 20px 0;
-      border: 2px dashed #e03c3c;
-      padding: 15px 10px;
+    .eligibility-box {
+      border: 1.5px solid #e03c3c;
       background: #fffafa;
+      padding: 10px;
       border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      margin-top: 8px;
     }
     
-    #discountCode {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #e03c3c;
-      letter-spacing: 1px;
-      white-space: nowrap;
+    .status-badge { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; }
+    
+    /* THE FIX: Discount Active Text to White */
+    .eligible-active { 
+      color: white !important; 
+      background-color: #e03c3c; 
+      padding: 4px 12px; 
+      border-radius: 6px; 
     }
+    
+    .policy-highlight { color: #b8860b; }
 
-    .signature-line {
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px dashed #ddd;
+    /* Enhanced Modal Styling with Blur */
+    .custom-modal { backdrop-filter: blur(5px); background-color: rgba(0, 0, 0, 0.5); }
+    .modal-content {
+      border-radius: 15px;
+      padding: 25px;
+      border: 2px solid #e03c3c;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
-    .signature-line h4 { color: #e03c3c; font-size: 1.3rem; margin-top: 5px; }
-    
-    .note {
+    #modal-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #333;
       text-align: center;
-      font-size: 0.85rem;
-      margin: 10px 0;
-      color: #555;
-      font-weight: 500;
+      margin-top: 10px;
     }
   </style>
 </head>
 
 <body class="feedback-page-body">
 
-<header class="top-header">
-  <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-  <div class="header-logo">
-    <img src="images/dumble.jpeg" alt="Dumble Logo">
-  </div>
-</header>
-
-<div class="feedback-container">
-  <div class="feedback-title-row" id="titleRow">
-    <h1>Your Feedback</h1>
-  </div>
-
-  <form id="feedbackForm">
-    <label for="rating">Rate Us:</label>
-    <select id="rating" name="rating" required>
-      <option value="">Select rating</option>
-      <option value="1">⭐ Very Poor</option>
-      <option value="2">⭐⭐ Poor</option>
-      <option value="3">⭐⭐⭐ Average</option>
-      <option value="4">⭐⭐⭐⭐ Good</option>
-      <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-    </select>
-
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" maxlength="10" required>
-    <p id="phoneError" class="error-hint">Invalid Number: Please check and try again.</p>
-
-    <label for="message">Your Feedback:</label>
-    <textarea id="message" name="message" placeholder="What can we do better?" required></textarea>
-
-    <p class="note">
-      ✨ Your reward will be revealed after submission.
-    </p>
-
-    <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
-  </form>
-
-  <div id="thankYouBox" class="thank-you-card" style="display: none; padding-bottom: 30px !important;">
-    <div id="statusIcon">
+  <div id="side-menu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">×</button>
+    <div class="menu-header">
+      <img src="images/dumble.jpeg" alt="Dumble Logo" class="menu-logo">
+      <h3>Dumble Foods</h3>
     </div>
-    <h2 id="thankTitle" style="font-family: 'Georgia', serif;">You’re the Best! ✨</h2>
-    <p id="thankMessage" style="margin: 10px 0; font-size: 0.95rem; line-height: 1.4;">
-        Thanks for being a fan of Dumble Foods! We’ve unlocked a special treat for you. Use the code below to save on your next order.
-    </p>
-    
-    <div id="codeBox" class="coupon-design" style="display: flex;">
-        <span id="discountCode">DF-CODE</span>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="javascript:void(0)" onclick="toggleMenu(); showCustomMessage('Ordering is under development!')"><i class="fas fa-shopping-cart"></i> Order Now</a>
+    <a href="feedback.html"><i class="fas fa-star"></i> Feedback</a>
+    <a href="tel:6294870535"><i class="fas fa-phone"></i> Contact Us</a>
+    <a href="index.html#about-us-section"><i class="fas fa-info-circle"></i> About Us</a>
+  </div>
+
+  <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
+
+  <header class="top-header">
+    <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    <div class="header-logo"><img src="images/dumble.jpeg" alt="Dumble Logo"></div>
+  </header>
+
+  <div class="feedback-container">
+    <div class="feedback-title-row" id="titleRow">
+        <h1>Your Feedback</h1>
     </div>
 
-    <div class="signature-line">
-        <p style="font-style: italic; color: #777; margin:0;">With love,</p>
-        <h4 style="color: #e03c3c; font-size: 1.3rem; margin-top: 5px;">Dumble</h4>
+    <form id="feedbackForm">
+      <label for="rating">Rate Us:</label>
+      <select id="rating" name="rating" required>
+        <option value="">Select rating</option>
+        <option value="1">⭐ Very Poor</option>
+        <option value="2">⭐⭐ Poor</option>
+        <option value="3">⭐⭐⭐ Average</option>
+        <option value="4">⭐⭐⭐⭐ Good</option>
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+      </select>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter phone number" maxlength="10" required>
+      <p id="phoneError" class="error-hint">Invalid Number: Please try again.</p>
+
+      <label for="message">Your Feedback:</label>
+      <textarea id="message" name="message" placeholder="Tell us what you think?" required></textarea>
+      
+      <p class="note" style="text-align: center; margin-top: 10px; font-size: 0.85rem; color: #555;">✨ Your treat will be revealed after submission.</p>
+      
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Feedback</button>
+    </form>
+
+    <div id="thankYouBox" class="thank-you-card" style="display:none;">
+      <h2 id="thankTitle"></h2>
+      <p id="thankMessage"></p>
+      
+      <table class="reward-table" id="rewardTable" style="width:100%; border-collapse: collapse; margin: 8px 0;">
+          <tr>
+              <td style="padding: 12px; background: #fffdf5; border: 2.5px solid #ffc107; border-radius: 12px; text-align: center;">
+                  <span id="statusLabel" class="status-badge"></span>
+                  <div class="eligibility-box">
+                    <p id="eligibilityNote" style="font-size: 0.85rem; font-weight: 600; margin: 0; color: #e03c3c;"></p>
+                  </div>
+                  <p id="fairnessNote" style="font-size: 0.75rem; color: #777; margin-top: 12px; font-style: italic;">
+                    <span id="fairnessText"></span> 
+                    <i class="fas fa-info-circle" style="color: #e03c3c; cursor: pointer; margin-left: 5px; font-size: 0.9rem;" onclick="showFairnessDetails()"></i>
+                  </p>
+              </td>
+          </tr>
+      </table>
+
+      <div id="instructionArea" class="claim-box" style="margin-top: 8px; padding: 10px; border: 1px dashed #e03c3c; background: #fff; border-radius: 8px;">
+          <p id="claimText" style="font-size: 0.85rem; font-weight: 600; margin: 0; color: #333; text-align: center;"></p>
+      </div>
+
+      <div class="signature-line" style="margin-top: 12px; border-top: 1px solid #eee; padding-top: 8px; text-align: center;">
+          <p style="font-family: 'Dancing Script', cursive; font-size: 1rem; margin:0; color: #888;">With love,</p>
+          <h4 style="font-size: 1.3rem; margin: 0; color: #e03c3c; font-weight: 800;">Dumble</h4>
+      </div>
+
+      <button onclick="location.href='index.html'" class="submit-btn home-btn-red" style="margin: 12px auto 0; width: 140px; height: 42px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <i class="fas fa-home"></i> <span>Go Home</span>
+      </button>
     </div>
-
-    <button onclick="location.href='index.html'" class="submit-btn" style="margin-top: 25px; background-color: #e03c3c !important; width: 160px; height: 48px; margin-inline: auto; display: flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; border: none; padding: 0; cursor: pointer;">
-        <i class="fas fa-home" style="font-size: 1.1rem; line-height: 1; display: inline-flex; align-items: center; margin-bottom: 2px;"></i>
-        <span style="font-size: 1rem; font-weight: 600; line-height: 1; color: white;">Go Home</span>
-    </button>
-</div>
   </div>
-</div>
 
-<script>
-function toggleMenu() {
-    // Note: Ensure side-menu and menu-overlay IDs exist in your layout if you use this
-    const menu = document.getElementById('side-menu');
-    const overlay = document.getElementById('menu-overlay');
-    if(menu) menu.classList.toggle('open');
-    if(overlay) overlay.classList.toggle('active');
-}
+  <div id="custom-message-modal" class="custom-modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeCustomMessage()">×</span>
+      <p id="modal-text"></p>
+    </div>
+  </div>
 
-const phoneInput = document.getElementById('phone');
-const phoneError = document.getElementById('phoneError');
-const submitBtn = document.getElementById('submitBtn');
-const form = document.getElementById('feedbackForm');
+  <script>
+  function toggleMenu() {
+      const menu = document.getElementById('side-menu');
+      const overlay = document.getElementById('menu-overlay');
+      const isMenuOpen = menu.classList.toggle('open');
+      overlay.classList.toggle('active', isMenuOpen);
+      document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
+  }
 
-phoneInput.addEventListener('input', () => {
-    phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
-    phoneError.style.display = 'none';
-});
+  function showCustomMessage(message) {
+      const modal = document.getElementById('custom-message-modal');
+      const modalText = document.getElementById('modal-text');
+      modalText.textContent = message;
+      modal.style.display = 'flex';
+  }
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    const val = phoneInput.value;
-    // Basic fake check
-    const isFake = /^(.)\1+$/.test(val) || val === "1234567890" || val.length !== 10;
-    
-    if (isFake) {
-        phoneError.style.display = 'block';
-        return;
-    }
+  function closeCustomMessage() { document.getElementById('custom-message-modal').style.display = 'none'; }
 
-    submitBtn.innerText = "Submitting...";
-    submitBtn.disabled = true;
+  function showFairnessDetails() {
+      showCustomMessage("To ensure fairness for all our customers, feedback discounts are limited to once every 7 days. We truly value your support! ❤️");
+  }
 
-    try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbwtNhXfAVrItkXjuB5ig8ly9DfdP-S3co8eMNJHbUeT9Dv_KXO7viTZ6TvPw_6qHqLa/exec", { method: "POST", body: new FormData(form) });
-        const data = await res.json();
-        
-        form.style.display = "none";
-        document.getElementById('titleRow').style.display = "none";
-        document.getElementById("thankYouBox").style.display = "block";
+  const ratingSelect = document.getElementById('rating');
+  const messageBox = document.getElementById('message');
+  const phoneInput = document.getElementById('phone');
+  const phoneError = document.getElementById('phoneError');
+  const form = document.getElementById('feedbackForm');
 
-        if (data.status === "SUCCESS") {
-            document.getElementById("thankTitle").textContent = "You’re the Best! ✨";
-            document.getElementById("thankMessage").textContent = "Thanks for being a fan of Dumble Foods! We’ve unlocked a special treat for you. Use the code below to save on your next order.";
-            document.getElementById("discountCode").textContent = data.code;
-            document.getElementById("codeBox").style.display = "flex";
-        } else if (data.status === "ALREADY_CLAIMED") {
-            document.getElementById("statusIcon").innerHTML = '<i class="fas fa-clock" style="color: #ffc107;"></i>';
-            document.getElementById("thankTitle").textContent = "Already Claimed";
-            document.getElementById("thankMessage").textContent = "You have already taken a code recently. To be fair to everyone, we give out one code per customer every week. See you again soon!";
-            document.getElementById("codeBox").style.display = "none";
-        } else {
-            // This handles any other server error or "Invalid" response from your Google Script
-            document.getElementById("statusIcon").innerHTML = '<i class="fas fa-exclamation-circle" style="color: #e03c3c;"></i>';
-            document.getElementById("thankTitle").textContent = "Invalid Number";
-            document.getElementById("thankMessage").textContent = "This phone number does not look right. Please check the number and try again to get your discount.";
-            document.getElementById("codeBox").style.display = "none";
-        }
-    } catch (err) {
-        alert("Connection error. Try again.");
-        submitBtn.innerText = "Submit Feedback";
-        submitBtn.disabled = false;
-    }
-});
-</script>
+  const ratingPlaceholders = {
+    "1": "Oh no! Tell us what went wrong…",
+    "2": "We’re sorry. What could we have done better?",
+    "3": "Thanks! What didn’t meet your expectations?",
+    "4": "Almost there! What could we improve?",
+    "5": "Yay! We’re so happy you enjoyed it. Leave us a smile 😊"
+  };
+
+  ratingSelect.addEventListener("change", () => {
+    messageBox.placeholder = ratingPlaceholders[ratingSelect.value] || "Tell us what you think?";
+  });
+
+  phoneInput.addEventListener('input', () => {
+      phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '');
+      phoneError.style.display = 'none';
+  });
+
+  form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const rating = ratingSelect.value;
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.innerText = "Submitting...";
+      submitBtn.disabled = true;
+
+      try {
+          const res = await fetch("https://script.google.com/macros/s/AKfycbwtNhXfAVrItkXjuB5ig8ly9DfdP-S3co8eMNJHbUeT9Dv_KXO7viTZ6TvPw_6qHqLa/exec", { 
+            method: "POST", 
+            body: new FormData(form) 
+          });
+          const data = await res.json();
+          
+          form.style.display = "none";
+          document.getElementById('titleRow').style.display = "none";
+          document.getElementById("thankYouBox").style.display = "block";
+
+          const thankTitle = document.getElementById("thankTitle");
+          const thankMsg = document.getElementById("thankMessage");
+          const eligNote = document.getElementById("eligibilityNote");
+          const claimText = document.getElementById("claimText");
+          const fairnessText = document.getElementById("fairnessText");
+          const statusLabel = document.getElementById("statusLabel");
+          const instructionArea = document.getElementById("instructionArea");
+
+          if (data.status === "SUCCESS") {
+              statusLabel.textContent = "Discount Active";
+              statusLabel.className = "status-badge eligible-active";
+              instructionArea.style.display = "block";
+              fairnessText.textContent = "One discount per 7 days.";
+              
+              if (rating == 5) {
+                  thankTitle.textContent = "We’re so happy you loved it!";
+                  thankMsg.innerHTML = "Thanks for supporting Dumble ❤️<br>Your kind words keep us cooking!";
+              } else if (rating == 4) {
+                  thankTitle.textContent = "Thanks for the great rating!";
+                  thankMsg.textContent = "We’ll work hard to make it a perfect 5 next time 😊";
+              } else if (rating == 3) {
+                  thankTitle.textContent = "Thanks for your feedback!";
+                  thankMsg.textContent = "We’re always improving and your input helps a lot.";
+              } else if (rating == 2) {
+                  thankTitle.textContent = "We’re really sorry 😔";
+                  thankMsg.textContent = "We'll work hard to improve our standards.";
+              } else {
+                  thankTitle.textContent = "Our Sincere Apologies";
+                  thankMsg.textContent = "This is not our standard. Thank you for telling us.";
+              }
+
+              eligNote.textContent = "You’re eligible for a discount next visit!";
+              claimText.textContent = "💡 Tell the phone number at stall to claim.";
+
+          } else if (data.status === "ALREADY_CLAIMED") {
+              statusLabel.textContent = "Limit Reached";
+              statusLabel.className = "status-badge policy-highlight";
+              
+              thankTitle.textContent = "Thank You Again!";
+              thankMsg.textContent = "We have received your message.";
+              eligNote.textContent = "Next discount: Available after 7 days.";
+              claimText.textContent = "";
+              instructionArea.style.display = "none";
+              fairnessText.textContent = "One discount allowed every 7 days.";
+          } else {
+              thankTitle.textContent = "Invalid Number";
+              thankMsg.textContent = "Please check your details and try again.";
+              document.getElementById("rewardTable").style.display = "none";
+              instructionArea.style.display = "none";
+          }
+      } catch (err) {
+          showCustomMessage("Connection error. Try again.");
+          submitBtn.innerText = "Submit Feedback";
+          submitBtn.disabled = false;
+      }
+  });
+  </script>
 </body>
-</html>
+  </html>
