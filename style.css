@@ -710,77 +710,95 @@ footer button:hover { background: #e6b300; }
 }
 
 
-/* Thank You Box Design (REQ 3 FIX: Increased margin-top for header clearance) */
-.thank-you {
+/* --- PREMIUM RESULT CARD --- */
+.thank-you-card {
     display: none;
     text-align: center;
-    padding: 22px 18px;
-    border-radius: 12px;
+    padding: 25px 15px;
+    border-radius: 20px;
     max-width: 500px;
-
-    /* ✅ KEY FIX */
-    margin: 20px auto 40px;   /* top | left-right | bottom */
-
-    background: linear-gradient(145deg, #fff, #ffe8e8);
-    border: 3px solid #e03c3c;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    animation: bounceIn 0.8s ease-out;
+    margin: 15px auto;
+    background: #fff;
+    border: 2px solid #e03c3c;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
-.thank-you h2 {
-  margin-bottom: 8px;
-    color: #c42d2d;
-    font-size: 2rem;
-    font-family: 'Georgia', serif;
+
+#thankTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #e03c3c;
+    margin-bottom: 10px;
 }
-.thank-you-icon { /* New icon style */
-    font-size: 4rem;
-    color: #ffc107;
+
+#thankMessage {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
     margin-bottom: 20px;
-    animation: pulse 1.5s infinite;
-    display: block;
+    padding: 0 10px;
 }
-.signature-note { /* Style */
-    margin-top: 30px;
-    font-size: 1.1rem;
-    line-height: 1.4;
-    text-align: center;
-    border-top: 1px dashed #ccc;
+
+/* --- THE REWARD TABLE (ZONE B) --- */
+.reward-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    overflow: hidden; /* Rounded corners for table */
+}
+
+.reward-table td {
+    padding: 15px;
+    background: #fffdf5;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.eligible-active { background: #e03c3c; color: #fff; }
+.policy-highlight { background: #eee; color: #666; }
+
+/* --- THE CLAIM BOX (ZONE C) --- */
+.claim-box {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 15px;
+}
+
+.claim-box p {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* --- SIGNATURE --- */
+.signature-line {
+    margin-top: 20px;
     padding-top: 15px;
 }
-.signature-note p:first-child {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 0;
-}
-.signature-note p:last-child {
-    font-weight: 800;
-    color: #e03c3c;
-    font-size: 1.5rem;
-    margin-top: 5px;
-    letter-spacing: 1px;
-}
-.back-btn {
-    /* Ensuring this button remains prominent and consistent */
-    margin-top: 25px !important; 
-    padding: 12px 25px !important;
-    font-size: 1.1rem !important;
-    background: #e03c3c !important;
-    color: white !important;
-    border-radius: 8px !important;
-}
+.signature-line p { font-family: 'Dancing Script', cursive; font-size: 1.1rem; color: #888; margin: 0; }
+.signature-line h4 { font-size: 1.6rem; color: #e03c3c; margin: 0; font-weight: 800; }
 
-/* Animations for Thank You Box */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+
+#statusIcon i {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    display: block;
 }
 
 @keyframes bounceIn {
-  0% { opacity: 0; transform: scale(0.3); }
-  50% { opacity: 1; transform: scale(1.05); }
-  70% { transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
 }
 /* Home icon beside feedback title */
 .feedback-title-row {
@@ -835,4 +853,4 @@ footer button:hover { background: #e6b300; }
 
 .home-btn-red:hover {
   background-color: #c42d2d !important;
-}
+  }
